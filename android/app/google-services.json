@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "139843971124",
+    "firebase_url": "https://intro-native.firebaseio.com",
+    "project_id": "intro-native",
+    "storage_bucket": "intro-native.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139843971124:android:c0a69fa666538ed3",
+        "android_client_info": {
+          "package_name": "com.intercambios"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139843971124-5q1qp3nftl974j1rgrgju3tsi0bdqahs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHHoC-JBzJv0FhXz-IpjWNuhXSoy6LIQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "139843971124-09gss45amimj3mo9qei8ccdbqh7o0f1h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
