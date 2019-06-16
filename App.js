@@ -8,20 +8,28 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import Navigator from './Navigator';
+import AppNavigator from './Navigator';
+import { Provider as PaperProvider, DefaultTheme} from 'react-native-paper';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+// construir nuestro theme
+
+const myTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#ef5a5a',
+  }
+
+}
 
 type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <Navigator />
+      <PaperProvider theme={myTheme}>
+        <AppNavigator />
+      </PaperProvider>
+      
     );
   }
 }

@@ -6,10 +6,6 @@ import SignUp from '../components/AuthenticatorUi';
 import AuthenticatorUi from '../components/AuthenticatorUi';
 
 
-
-
-
-
 class SignUpScreen extends Component{
 
     constructor(props){

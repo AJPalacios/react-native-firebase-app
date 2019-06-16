@@ -13,6 +13,12 @@ const AuthNavigator = createStackNavigator({
 
 const AppNavigator = createStackNavigator({
     Home: HomeScreen
+},{
+    defaultNavigationOptions: ({navigation}) => {
+        return {
+            title: "Intercambios 🎁"
+        }
+    }
 });
 
 
