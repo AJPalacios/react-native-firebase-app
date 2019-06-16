@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 import { TextInput, Button, Title, withTheme } from 'react-native-paper';
 
@@ -7,48 +7,75 @@ import { TextInput, Button, Title, withTheme } from 'react-native-paper';
 import styles from '../stylesheets/login.stylesheet';
 
 
-AuthenticatorUI = (props) => {
-    console.log(props.theme)
-    return(
-        <View
-        style={styles.container}
-        >   
-            <Title>Ingresar a tu cuenta.</Title>
-            <TextInput
-                style={styles.formControl}
-                label="Correo Electrónico"
-                onChangeText={(email)=> props.setEmail(email) } 
+class AuthenticatorUI extends Component{
 
-                />
-            
-            <TextInput 
-                style={styles.formControl}
-                label="Password"
-                onChangeText={(password)=> props.setPassword(password) } 
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: ''
+        }
+    }
 
-                />
-            <View style={{
-                flexDirection: 'row',
-                justifyContent: 'space-evenly',
-                ...styles.formControl
-            }}> 
-                <TouchableHighlight>
-                    <Button 
-                        color={props.theme.colors.accent}
-                        onPress={()=>props.mainAction()} 
-                        mode='contained'
-                    >
-                        {props.mainButtonTitle}
-                    </Button>
-                </TouchableHighlight>
-                <TouchableHighlight>
-                    <Button onPress={()=>props.navigationAction()} mode='contained'>
-                        {props.secondaryButtonTitle}
-                    </Button>
-                </TouchableHighlight>
+    setEmail = (email)=>{
+        this.setState({
+            email
+        });
+    }
+
+    setPassword=(password)=>{
+        this.setState({
+            password
+        })
+    }
+
+    render() {
+        // console.log(props.theme)
+        return(
+            <View
+            style={styles.container}
+            >   
+                <Title>Ingresar a tu cuenta.</Title>
+                <TextInput
+                    style={styles.formControl}
+                    label="Correo Electrónico"
+                    onChangeText={(email)=> this.setEmail(email) } 
+                    value={this.state.email}
+                    textContentType="emailAddress"
+                    keyboardType="email-address"
+                    />
+                
+                <TextInput 
+                    style={styles.formControl}
+                    label="Password"
+                    onChangeText={(password)=> this.setPassword(password) } 
+                    value={this.state.password}
+                    textContentType="password"
+                    secureTextEntry={true}
+                    />
+                <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-evenly',
+                    ...styles.formControl
+                }}> 
+                    <TouchableHighlight>
+                        <Button 
+                            color={this.props.theme.colors.accent}
+                            onPress={()=>this.props.mainAction({email: this.state.email, password: this.state.password})} 
+                            mode='contained'
+                        >
+                            {this.props.mainButtonTitle}
+                        </Button>
+                    </TouchableHighlight>
+                    <TouchableHighlight>
+                        <Button onPress={()=>this.props.navigationAction()} mode='contained'>
+                            {this.props.secondaryButtonTitle}
+                        </Button>
+                    </TouchableHighlight>
+                </View>
             </View>
-        </View>
-    );
+        );
+    }
 }
 
 export default withTheme(AuthenticatorUI); // inject prop theme

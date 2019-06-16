@@ -10,6 +10,9 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import AppNavigator from './Navigator';
 import { Provider as PaperProvider, DefaultTheme} from 'react-native-paper';
+import { Provider as StoreProvider } from 'react-redux';
+import store from './redux/store';
+
 
 // construir nuestro theme
 
@@ -27,7 +30,9 @@ export default class App extends Component<Props> {
   render() {
     return (
       <PaperProvider theme={myTheme}>
-        <AppNavigator />
+        <StoreProvider store={store}>
+          <AppNavigator />
+        </StoreProvider>
       </PaperProvider>
       
     );
