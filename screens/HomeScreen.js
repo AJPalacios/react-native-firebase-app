@@ -3,9 +3,23 @@ import firebase from 'react-native-firebase';
 // components
 import HomeComponent from '../components/HomeComponent';
 import { IconButton } from 'react-native-paper';
-
+import { connect } from 'react-redux';
 
 class HomeScreen extends Component{
+
+    componentDidMount() {
+        this.db = firebase.firestore();
+
+        this.readMyEvents();
+    }
+
+    readMyEvents = async () => {
+       let ref = await this.db.collection('users').doc(this.props.user.uid)
+        .collection('events').get()
+
+        let events = ref.docs.map(docRef => docRef.data());
+        console.log(events)
+    }
 
     static navigationOptions = ({ navigation }) => {
         return {
@@ -36,11 +50,21 @@ class HomeScreen extends Component{
         });
     }
 
+    goToAddEvent = () =>{
+        this.props.navigation.navigate('AddEvent');
+    }
+
     render(){
         return(
-            <HomeComponent setNavigationColor={this.setNavigationColor} />
+            <HomeComponent 
+                setNavigationColor={this.setNavigationColor} 
+                goToAddEvent={this.goToAddEvent} 
+                    
+                />
         );
     }
 }
 
-export default HomeScreen;
+export default connect((state) =>{
+    return { user: state.user }
+},)(HomeScreen);

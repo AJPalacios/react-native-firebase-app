@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text} from 'react-native';
-import { withTheme } from 'react-native-paper';
+import { withTheme, FAB } from 'react-native-paper';
+
+import baseStyles from '../stylesheets/base.stylesheets';
 
 class HomeComponent extends Component {
 
@@ -10,8 +12,14 @@ class HomeComponent extends Component {
 
   render(){
     return(
-      <View>
+      <View style={{ flex : 1}}>
         <Text>Bienvenido</Text>
+        <FAB 
+          icon="add"
+          color="white"
+          style={{ backgroundColor: this.props.theme.colors.primary, ...baseStyles.fab }}
+          onPress={this.props.goToAddEvent}
+        />
       </View>
     );
   }

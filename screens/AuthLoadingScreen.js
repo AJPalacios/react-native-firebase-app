@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import firebase from 'react-native-firebase';
+import { connect } from 'react-redux';
+import { login } from '../redux/actions/user';
 
 class AuthLoadingScreen extends Component{
 
@@ -10,6 +12,7 @@ class AuthLoadingScreen extends Component{
 
     getUser(){
         firebase.auth().onUserChanged((user)=>{
+            this.props.login(user)
             this.props.navigation.navigate(user ? 'App' : 'Auth');
         });
     }
@@ -24,4 +27,6 @@ class AuthLoadingScreen extends Component{
 
 }
 
-export default AuthLoadingScreen;
+export default connect(()=>{ return {}},{
+    login
+})(AuthLoadingScreen);
